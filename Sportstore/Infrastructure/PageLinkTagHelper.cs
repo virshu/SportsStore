@@ -18,6 +18,9 @@ public class PageLinkTagHelper(IUrlHelperFactory helperFactory) : TagHelper
                 
     public string? PageAction { get; set; }
 
+    [HtmlAttributeName(DictionaryAttributePrefix = "page-url-")]
+    public Dictionary<string, object> PageUrlValues { get; set; } = [];
+
     public bool PageClassesEnabled { get; set; } = false;
     public string PageClass { get; set; } = string.Empty;
     public string PageClassNormal { get; set; } = string.Empty;
@@ -28,12 +31,14 @@ public class PageLinkTagHelper(IUrlHelperFactory helperFactory) : TagHelper
         if (ViewContext == null || PageModel == null) return;
         IUrlHelper urlHelper = helperFactory.GetUrlHelper(ViewContext);
         TagBuilder result = new("div");
-        for (int i = 1; i <= PageModel.TotalPages; i++) {
+        for (int i = 1; i <= PageModel.TotalPages; i++)
+        {
+            PageUrlValues["productPage"] = i;
             TagBuilder tag = new("a")
             {
                 Attributes =
                 {
-                    ["href"] = urlHelper.Action(PageAction, new { productPage = i })
+                    ["href"] = urlHelper.Action(PageAction, PageUrlValues)
                 }
             };
             if (PageClassesEnabled) {

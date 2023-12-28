@@ -7,4 +7,5 @@ public class ProductListVM
     public IEnumerable<Product> Products { get; init; } 
         = Enumerable.Empty<Product>();
     public PagingInfo PagingInfo { get; init; } = new();
+    public string? CurrentCategory { get; set; }
 }

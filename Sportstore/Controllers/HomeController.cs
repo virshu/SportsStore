@@ -10,11 +10,15 @@ public class HomeController(StoreDbContext context) : Controller
 {
     private const int PageSize = 4;
 
-    public async Task<IActionResult> Index(int productPage = 1)
+
+    public async Task<IActionResult> Index(string?  category, int productPage = 1)
     {
-        List<Product> productList = await context.Products.OrderBy(p => p.Name)
+        List<Product> productList = await context.Products
+            .Where(p => category == null || p.Category == category)
+            .OrderBy(p => p.Name)
             .Skip((productPage - 1) * PageSize).Take(PageSize)
             .ToListAsync();
+
         return View(new ProductListVM
         {
             Products = productList,
@@ -22,9 +26,14 @@ public class HomeController(StoreDbContext context) : Controller
             {
                 CurrentPage = productPage,
                 ItemsPerPage = PageSize,
-                TotalItems = context.Products.Count()
-            }
+                TotalItems = context.Products.Count(GetCount)
+            },
+            CurrentCategory = category
         });
+        // https://stackoverflow.com/questions/6308328/type-of-conditional-expression-cannot-be-determined-func
+        bool GetCountByCategoryFunc(Product p) => p.Category == category;
+        bool GetCountFunc() => true;
+        bool GetCount(Product p) => string.IsNullOrEmpty(category) ? GetCountFunc() : GetCountByCategoryFunc(p);
     }
 
     public IActionResult Privacy()
