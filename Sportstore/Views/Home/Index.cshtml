@@ -1,4 +1,4 @@
-﻿@model IList<Product>
+﻿@model ProductListVM
 @{
     ViewData["Title"] = "Products";
 }
@@ -7,7 +7,7 @@
     <h1 class="display-4">Products</h1>
 </div>
 
-@foreach (Product p in Model ?? [])
+@foreach (Product p in Model.Products ?? [])
 {
     <div>
         <h3>@p.Name</h3>
@@ -15,3 +15,5 @@
         <h4>@p.Price.ToString("c")</h4>
     </div>
 }
+
+<div page-model="@Model.PagingInfo" page-action="Index"></div>

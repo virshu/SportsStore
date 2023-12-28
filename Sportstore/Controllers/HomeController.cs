@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Sportstore.Models;
 using System.Diagnostics;
 using Microsoft.EntityFrameworkCore;
+using Sportstore.ViewModels;
 
 namespace Sportstore.Controllers;
 
@@ -14,7 +15,16 @@ public class HomeController(StoreDbContext context) : Controller
         List<Product> productList = await context.Products.OrderBy(p => p.Name)
             .Skip((productPage - 1) * PageSize).Take(PageSize)
             .ToListAsync();
-        return View(productList);
+        return View(new ProductListVM
+        {
+            Products = productList,
+            PagingInfo = new PagingInfo
+            {
+                CurrentPage = productPage,
+                ItemsPerPage = PageSize,
+                TotalItems = context.Products.Count()
+            }
+        });
     }
 
     public IActionResult Privacy()
