@@ -5,13 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Sports Store</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/Sportstore.styles.css" asp-append-version="true" />
+    <link href="/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/lib/font-awesome/css/all.min.css" rel="stylesheet" />
 </head>
 <body>
 <div class="bg-dark text-white p-2">
-    <span class="navbar-brand ml-2">SPORTS STORE</span>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col navbar-brand">SPORTS STORE</div>
+            <div class="col-6 navbar-text text-end">
+                <vc:cart-summary />
+            </div>
+        </div>
+    </div>
 </div>
+
 <div class="row m-1 p-1">
     <div id="categories" class="col-3">
         <vc:navigation-menu />

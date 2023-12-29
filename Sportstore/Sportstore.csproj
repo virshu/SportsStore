@@ -20,7 +20,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <_ContentIncludedByDefault Remove="Views\Shared\Components\CartSummary\Default.cshtml" />
     <_ContentIncludedByDefault Remove="Views\Shared\ProductSummary.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Views\Shared\Components\CartSummary\Default.cshtml" />
   </ItemGroup>
 
 </Project>
