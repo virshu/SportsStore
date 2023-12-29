@@ -10,21 +10,24 @@ builder.Services.AddDbContext<StoreDbContext>(opts =>
 {
     opts.UseSqlServer(builder.Configuration["ConnectionStrings:SportsStoreConnection"]);
 });
+
+builder.Services.AddRazorPages();
+builder.Services.AddDistributedMemoryCache();
+builder.Services.AddSession();
+
 WebApplication app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
+app.UseSession();
 
-app.MapControllerRoute("catpage",
-    "{category}/Page{productPage:int}",
+app.MapControllerRoute("catpage", "{category}/Page{productPage:int}",
     new { Controller = "Home", action = "Index" });
         
 app.MapControllerRoute("page", "Page{productPage:int}",
@@ -41,9 +44,8 @@ app.UseRouting();
 
 app.UseAuthorization();
 
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+app.MapControllerRoute(name: "default", pattern: "{controller=Home}/{action=Index}/{id?}");
+app.MapRazorPages();
 
 SeedData.EnsurePopulated(app);
 app.Run();
