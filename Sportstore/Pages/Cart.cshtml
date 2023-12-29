@@ -14,8 +14,7 @@
     </thead>
     
     <tbody>
-    @foreach (CartLine line in Model.Cart?.Lines 
-              ?? Enumerable.Empty<CartLine>()) {
+    @foreach (CartLine line in Model.Cart?.Lines ?? Enumerable.Empty<CartLine>()) {
         <tr>
             <td class="text-center">@line.Quantity</td>
             <td class="text-left">@line.Product.Name</td>
