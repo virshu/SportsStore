@@ -51,4 +51,4 @@ app.MapControllerRoute(name: "default", pattern: "{controller=Home}/{action=Inde
 app.MapRazorPages();
 
 SeedData.EnsurePopulated(app);
-app.Run();
+await app.RunAsync();

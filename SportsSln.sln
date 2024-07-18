@@ -9,6 +9,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sportstore.Tests", "Sportst
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sportstore.Model", "Sportstore.Model\Sportstore.Model.csproj", "{75F5601B-B690-442B-A53A-8C44E1924643}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SportsStore.Api", "SportsStore.Api\SportsStore.Api.csproj", "{AE1DF2B1-75B9-423F-B179-3B2C4A0E3635}"
+	ProjectSection(ProjectDependencies) = postProject
+		{75F5601B-B690-442B-A53A-8C44E1924643} = {75F5601B-B690-442B-A53A-8C44E1924643}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +32,10 @@ Global
 		{75F5601B-B690-442B-A53A-8C44E1924643}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{75F5601B-B690-442B-A53A-8C44E1924643}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{75F5601B-B690-442B-A53A-8C44E1924643}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AE1DF2B1-75B9-423F-B179-3B2C4A0E3635}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE1DF2B1-75B9-423F-B179-3B2C4A0E3635}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE1DF2B1-75B9-423F-B179-3B2C4A0E3635}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE1DF2B1-75B9-423F-B179-3B2C4A0E3635}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
